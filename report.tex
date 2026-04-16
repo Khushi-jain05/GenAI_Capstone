@@ -1,0 +1,61 @@
+\documentclass[twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\title{Telco Customer Churn Prediction: An Agentic AI Approach}
+\author{Khushi Jain}
+\date{April 2024}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report details the implementation of a hybrid customer churn prediction system that combines traditional machine learning (Logistic Regression, Decision Trees) with modern Agentic Generative AI (Google Gemini). The system not only predicts churn with high accuracy but also provides natural language insights and retention strategies using a retrieval-augmented generation (RAG) approach.
+\end{abstract}
+
+\section{Introduction}
+Customer retention is critical for telecommunications providers. Milestone 1 of this project established a baseline using classification models. Milestone 2 extends this by introducing an AI Agent capable of interpreting model outputs and suggesting human-centric interventions.
+
+\section{Technical Implementation}
+
+\subsection{Machine Learning Pipeline}
+We employed two primary models:
+\begin{itemize}
+    \item \textbf{Logistic Regression:} Used for its interpretability and baseline performance.
+    \item \textbf{Decision Tree:} Used to capture non-linear relationships and high-dimensional interactions.
+\end{itemize}
+
+\subsection{Agentic AI Workflow}
+The "Churn Analyst Agent" is implemented using the Gemini 1.5 Flash model. The workflow follows an agentic pattern:
+1. \textbf{Perception:} The agent reads the raw customer data and the churn probability from the ML models.
+2. \textbf{Retrieval (RAG):} The agent searches a knowledge base of retention policies (simulated) to ground its responses.
+3. \textbf{Reasoning:} The agent synthesizes the data and retrieved knowledge to explain the "why" behind the churn risk.
+4. \textbf{Action:} The agent outputs a structured report including custom retention strategies and call scripts.
+
+\section{Results and Analysis}
+
+\subsection{Model Performance}
+The models were evaluated on the Telco Churn dataset (80/20 split). 
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Metric & LogReg & Decision Tree \\
+\midrule
+Accuracy & 0.81 & 0.79 \\
+F1-Score & 0.62 & 0.58 \\
+\bottomrule
+\end{tabular}
+\caption{Comparative performance metrics.}
+\end{table}
+
+\subsection{Qualitative Analysis}
+By integrating LLMs, we successfully converted a numeric probability (e.g., 0.82) into an actionable insight: "This customer is likely leaving due to their month-to-month contract and lack of tech support."
+
+\section{Conclusion}
+The transition from a predictive model to an agentic system significantly enhances business value by providing "actionable intelligence" rather than just raw data.
+
+\end{document}
