@@ -32,17 +32,31 @@ The application is designed to help business stakeholders understand **who is li
 ## 📂 Project Structure
 
 ```
-GenAI_Project_Capstone/
+GenAI_Capstone/
 │
-├── app.py                   # 🖥️  Streamlit application — main entry point
-├── data_preprocessing.py    # ⚙️  Data cleaning & feature engineering
-├── models.py                # 🤖 Model training & prediction logic
-├── evaluation.py            # 📊 Metrics calculation & visualization
-├── requirements.txt         # 📦 Python dependencies
-├── assets/
-│   └── system_design.svg    # 🏗️  System architecture diagram
-└── README.md                # 📄 You are here!
+ ├── app.py                   # 🖥️  Streamlit application — main entry point
+ ├── data_preprocessing.py    # ⚙️  Data cleaning & feature engineering
+ ├── models.py                # 🤖 Model training & prediction logic
++├── agent.py                 # 🤖 NEW: AI Agentic Layer (GenAI Logic)
+ ├── evaluation.py            # 📊 Metrics calculation & visualization
+ ├── requirements.txt         # 📦 Python dependencies
++├── .env.example             # 🔑 Template for API keys
+ ├── assets/
+ │   └── genai_capstone_systemdesign.png    # 🏗️  System architecture diagram
+ └── README.md                # 📄 You are here!
 ```
+
+---
+
+## 🤖 Milestone 2: Agentic AI & GenAI
+
+In this phase, we implemented **Advanced GenAI** features to transform the project from a simple predictor to an **Agentic System**.
+
+| Element | Implementation | Purpose |
+|---|---|---|
++| **LLM Integration** | Google Gemini 1.5 Flash | Provides reasoning and natural language explanations for churn. |
++| **RAG-Lite** | Simulated Knowledge Base Retrieval | Pulls retention best practices ('Knowledge') to inform the Agent's advice. |
++| **Agentic Reasoning** | `ChurnAnalystAgent` class | Combines raw data + ML probability + RAG context to output a human strategy. |
 
 ---
 
@@ -93,6 +107,16 @@ Provides functions for evaluating and visualizing model performance.
 
 ---
 
+### 4. `agent.py` — Agentic AI Layer (NEW!)
+
+| Method | Description |
+|---|---|
+| `__init__()` | Configures Google Generative AI (Gemini) using `.env` |
+| `get_customer_insight(data, pred)` | An **Agentic workflow** that processes customer attributes and model confidence to generate a human-readable retention report. |
+| `search_knowledge_base(topic)` | A **RAG-lite** function that simulates retrieving policy information to ground the Agent's response. |
+
+---
+
 ### 4. `app.py` — Streamlit Dashboard (Main Entry Point)
 
 The interactive web interface that ties everything together.
@@ -105,6 +129,7 @@ The interactive web interface that ties everything together.
 | **Model Performance** | Side-by-side metrics table with the winning model auto-highlighted |
 | **Sample Predictions** | Shows 5 random customers with true labels, predicted labels, and churn probabilities |
 | **Feature Insights** | Decision Tree importance + Logistic Regression coefficients + key business takeaways |
+| **AI Agent Insights** | (New) Generates deep, human-friendly reasons and strategies for individual customers. |
 
 ---
 
@@ -117,6 +142,8 @@ The interactive web interface that ties everything together.
 - 🎯 **Churn Probability Scores** — See how confident each model is about its prediction
 - 🔍 **Feature Importance Insights** — Understand **which features drive churn** most
 - 💡 **Actionable Business Insights** — Key takeaways like "Month-to-month contracts → HIGH churn risk"
+- 🤖 **Agentic Analysis** — AI Agent that 'reasons' why a customer might leave
+- 📖 **Knowledge Retrieval** — Simulated RAG to provide domain-specific retention advice
 
 ---
 
@@ -129,6 +156,8 @@ The interactive web interface that ties everything together.
 | **Web Framework** | Streamlit |
 | **Data Handling** | Pandas, NumPy |
 | **Visualization** | Plotly, Matplotlib, Seaborn |
+| **GenAI / Agents** | Google Generative AI (Gemini API) |
+| **Environment** | python-dotenv |
 
 ---
 
@@ -141,20 +170,25 @@ The interactive web interface that ties everything together.
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/GenAI_Project_Capstone.git
-cd GenAI_Project_Capstone
+1. **Clone & Setup:**
+   ```bash
+   git clone https://github.com/khushijain/GenAI_Capstone.git
+   cd GenAI_Capstone
+   pip install -r requirements.txt
+   ```
 
-# Install dependencies
-pip install -r requirements.txt
-```
+2. **API Keys:**
+   - Copy `.env.example` to `.env`.
+   - Get your Gemini API Key from [Google AI Studio](https://aistudio.google.com/).
+   - Add it to your `.env` file:
+     ```env
+     GOOGLE_API_KEY=your_actual_key_here
+     ```
 
-### Run the App
-
-```bash
-streamlit run app.py
-```
+3. **Run:**
+   ```bash
+   streamlit run app.py
+   ```
 
 The app will open at `http://localhost:8501`. Upload the **WA_Fn-UseC_-Telco-Customer-Churn.csv** file to get started.
 

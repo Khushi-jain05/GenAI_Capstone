@@ -102,3 +102,67 @@ if uploaded_file is not None:
             st.balloons()
         else:
             st.warning("Please train the models first!")
+
+    # ==========================================
+    # MILESTONE 2: AGENTIC AI & GENAI EXTENSION
+    # ==========================================
+    # We are adding this part for Milestone 2. 
+    # It uses a "Smart Agent" (LLM) to explain the data.
+    
+    st.divider()
+    st.header("🤖 Milestone 2: AI Agentic Insights")
+    st.markdown("""
+    Hey! Welcome to the smart part. Here, we don't just show numbers. 
+    We use **GenAI (Groq)** to acting as a 'Churn Analyst Agent' to explain 
+    **WHY** a customer is leaving and **HOW** we can stop them.
+    """)
+
+    from agent import ChurnAnalystAgent
+
+    if st.session_state.predictions is not None:
+        # 1. Create the Agent
+        agent = ChurnAnalystAgent()
+        
+        # 2. Pick a customer to talk about
+        st.subheader("Analyze a Specific Customer")
+        st.write("Pick a row from the predicted samples below to get deep AI reasoning.")
+        
+        # We'll just let them pick from the first 10 samples for ease
+        selected_row = st.number_input("Enter row number to analyze (0-9):", min_value=0, max_value=9, value=0)
+        
+        if st.button("Ask AI Agent to Analyze", type="secondary"):
+            with st.spinner("AI Agent is reading the data... 🧠"):
+                try:
+                    # Step 1: ML Model Prediction
+                    sample_data = df.iloc[selected_row].to_dict()
+                    prob = st.session_state.predictions['log_proba'][selected_row]
+                    
+                    # Step 2: Feature Importance Extraction
+                    dt_imp, lr_coef = st.session_state.models.get_insights()
+                    feature_names = st.session_state.models.feature_names
+                    
+                    top_indices = np.argsort(np.abs(lr_coef))[-3:]
+                    top_features = [feature_names[i] for i in top_indices]
+                    feature_text = "Top global features driving churn risk models: " + ", ".join(top_features)
+                    
+                    # Step 3: Context Builder
+                    context = agent.build_context(sample_data, feature_text)
+                    
+                    # Step 4: RAG Retrieval
+                    rag_help = agent.search_knowledge_base("retention")
+                    
+                    # Step 5 & 6: LLM Reasoning & Final Insight Generation
+                    report = agent.get_customer_insight(context, prob, rag_context=rag_help)
+                    
+                    # Show the magic!
+                    st.markdown("---")
+                    st.subheader(f"📊 AI Report for Customer")
+                    st.info(f"📖 **Retrieved Advice (RAG):** {rag_help}")
+                    st.markdown(report)
+                    st.success("The AI Agent successfully combined ML data with LLM reasoning!")
+                except Exception as e:
+                    st.error("⚠️ AI Agent encountered an issue.")
+                    st.warning("We could not fetch the AI reasoning at this moment. Please rely on the ML probability score.")
+                    print(f"Agent Pipeline Error (Likely API/403/401): {str(e)}")
+    else:
+        st.info("Note: Please 'Train & Evaluate Models' above first to see the AI Agent in action!")

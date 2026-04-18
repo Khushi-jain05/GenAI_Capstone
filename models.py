@@ -1,6 +1,10 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+import numpy as np
+
 
 class ChurnModels:
     def __init__(self, X_train, X_test, y_train, y_test):
@@ -15,12 +19,22 @@ class ChurnModels:
     def train_models(self, feature_names):
         self.feature_names = feature_names
         
+        # 🔍 Debug check (optional but useful)
+        print("NaNs in X_train:", np.isnan(self.X_train).sum())
+        print("NaNs in X_test:", np.isnan(self.X_test).sum())
+        
         print("training logistic regression")
-        self.log_reg = LogisticRegression(random_state=42, max_iter=1000)
+        self.log_reg = Pipeline([
+            ('imputer', SimpleImputer(strategy='mean')),
+            ('model', LogisticRegression(random_state=42, max_iter=1000))
+        ])
         self.log_reg.fit(self.X_train, self.y_train)
         
         print("training decision tree")
-        self.dt = DecisionTreeClassifier(random_state=42, max_depth=10)
+        self.dt = Pipeline([
+            ('imputer', SimpleImputer(strategy='mean')),
+            ('model', DecisionTreeClassifier(random_state=42, max_depth=10))
+        ])
         self.dt.fit(self.X_train, self.y_train)
         
         print("models trained")
@@ -47,6 +61,11 @@ class ChurnModels:
         return metrics
     
     def get_insights(self):
-        dt_importance = self.dt.feature_importances_
-        lr_coef = self.log_reg.coef_[0]
+        # Access model inside pipeline
+        dt_model = self.dt.named_steps['model']
+        lr_model = self.log_reg.named_steps['model']
+        
+        dt_importance = dt_model.feature_importances_
+        lr_coef = lr_model.coef_[0]
+        
         return dt_importance, lr_coef
