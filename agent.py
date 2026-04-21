@@ -109,4 +109,4 @@ class ChurnAnalystAgent:
         found_info = kb.get(topic.lower(), "Consult general retention guide for this specific issue.")
         return f"Retrieved Knowledge: {found_info}"
 
-# Created by Antigravity for Milestone 2 extension.
+
