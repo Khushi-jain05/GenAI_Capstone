@@ -1,4 +1,4 @@
-# 🔬 Telco Customer Churn Predictor
+Telco Customer Churn Predictor
 
 > **A machine learning-powered web application that predicts customer churn for telecom companies using Logistic Regression and Decision Tree classifiers, built with Streamlit.**
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 Customer churn is one of the biggest challenges for telecom companies. This project provides an **end-to-end ML pipeline** that:
 
@@ -21,7 +21,7 @@ The application is designed to help business stakeholders understand **who is li
 
 ---
 
-## 🏗️ System Design
+## System Design
 
 <p align="center">
   <img src="assets/genai_capstone_systemdesign.png" alt="System Architecture Diagram" width="100%"/>
@@ -29,26 +29,26 @@ The application is designed to help business stakeholders understand **who is li
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 GenAI_Capstone/
 │
- ├── app.py                   # 🖥️  Streamlit application — main entry point
- ├── data_preprocessing.py    # ⚙️  Data cleaning & feature engineering
- ├── models.py                # 🤖 Model training & prediction logic
-+├── agent.py                 # 🤖 NEW: AI Agentic Layer (GenAI Logic)
- ├── evaluation.py            # 📊 Metrics calculation & visualization
- ├── requirements.txt         # 📦 Python dependencies
-+├── .env.example             # 🔑 Template for API keys
+ ├── app.py                   #  Streamlit application — main entry point
+ ├── data_preprocessing.py    #  Data cleaning & feature engineering
+ ├── models.py                #  Model training & prediction logic
++├── agent.py                 #  NEW: AI Agentic Layer (GenAI Logic)
+ ├── evaluation.py            #  Metrics calculation & visualization
+ ├── requirements.txt         #  Python dependencies
++├── .env.example             #  Template for API keys
  ├── assets/
- │   └── genai_capstone_systemdesign.png    # 🏗️  System architecture diagram
- └── README.md                # 📄 You are here!
+ │   └── genai_capstone_systemdesign.png    #   System architecture diagram
+ └── README.md                # You are here!
 ```
 
 ---
 
-## 🤖 Milestone 2: Agentic AI & GenAI
+##  Milestone 2: Agentic AI & GenAI
 
 In this phase, we implemented **Advanced GenAI** features to transform the project from a simple predictor to an **Agentic System**.
 
@@ -60,7 +60,7 @@ In this phase, we implemented **Advanced GenAI** features to transform the proje
 
 ---
 
-## 🧩 Module Breakdown
+##  Module Breakdown
 
 ### 1. `data_preprocessing.py` — Data Cleaning & Feature Engineering
 
@@ -133,17 +133,17 @@ The interactive web interface that ties everything together.
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 📤 **CSV Upload** — Drag-and-drop the Telco Churn dataset
-- 🤖 **Dual Model Training** — Logistic Regression + Decision Tree trained simultaneously
-- 📊 **Comprehensive Evaluation** — Accuracy, Precision, Recall, F1, and Confusion Matrix
-- 🏆 **Auto Model Comparison** — Winning model detected and highlighted automatically
-- 🎯 **Churn Probability Scores** — See how confident each model is about its prediction
-- 🔍 **Feature Importance Insights** — Understand **which features drive churn** most
-- 💡 **Actionable Business Insights** — Key takeaways like "Month-to-month contracts → HIGH churn risk"
-- 🤖 **Agentic Analysis** — AI Agent that 'reasons' why a customer might leave
-- 📖 **Knowledge Retrieval** — Simulated RAG to provide domain-specific retention advice
+-  **CSV Upload** — Drag-and-drop the Telco Churn dataset
+-  **Dual Model Training** — Logistic Regression + Decision Tree trained simultaneously
+-  **Comprehensive Evaluation** — Accuracy, Precision, Recall, F1, and Confusion Matrix
+-  **Auto Model Comparison** — Winning model detected and highlighted automatically
+-  **Churn Probability Scores** — See how confident each model is about its prediction
+-  **Feature Importance Insights** — Understand **which features drive churn** most
+-  **Actionable Business Insights** — Key takeaways like "Month-to-month contracts → HIGH churn risk"
+-  **Agentic Analysis** — AI Agent that 'reasons' why a customer might leave
+-  **Knowledge Retrieval** — Simulated RAG to provide domain-specific retention advice
 
 ---
 
@@ -161,7 +161,7 @@ The interactive web interface that ties everything together.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -194,7 +194,7 @@ The app will open at `http://localhost:8501`. Upload the **WA_Fn-UseC_-Telco-Cus
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 This project uses the [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) dataset from Kaggle.
 
@@ -211,14 +211,14 @@ This project uses the [Telco Customer Churn](https://www.kaggle.com/datasets/bla
 
 | Insight | Impact |
 |---|---|
-| 📑 **Month-to-month contracts** | → **HIGH** churn risk |
-| ⏳ **Higher tenure** | → **LOWER** churn risk (loyal customers stay) |
-| 💰 **Higher MonthlyCharges** | → **HIGHER** churn risk |
-| 🛡️ **Lack of online security / tech support** | → **HIGHER** churn risk |
+| **Month-to-month contracts** | → **HIGH** churn risk |
+| **Higher tenure** | → **LOWER** churn risk (loyal customers stay) |
+| **Higher MonthlyCharges** | → **HIGHER** churn risk |
+| **Lack of online security / tech support** | → **HIGHER** churn risk |
 
 ---
 
-## 📋 Requirements
+Requirements
 
 ```
 pandas>=2.2.0
@@ -232,7 +232,7 @@ plotly>=5.17.0
 
 ---
 
-## 🤝 Contributing
+Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -242,12 +242,12 @@ plotly>=5.17.0
 
 ---
 
-## 📄 License
+License
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
 <p align="center">
-  <b>Built with ❤️ using Python, scikit-learn & Streamlit</b>
+  <b>Built with using Python, scikit-learn & Streamlit</b>
 </p>

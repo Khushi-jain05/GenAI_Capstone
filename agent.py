@@ -16,7 +16,7 @@ load_dotenv()
 class ChurnAnalystAgent:
     def __init__(self):
         # Get the API key safely from environment variables
-        api_key = os.getenv("GROQ_API_KEY")
+        api_key = "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"
         if api_key:
             try:
                 self.client = Groq(api_key=api_key)

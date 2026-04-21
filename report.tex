@@ -1,61 +1,212 @@
-\documentclass[twocolumn]{article}
-\usepackage[utf8]{inputenc}
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{titlesec}
 \usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{setspace}
 
-\title{Telco Customer Churn Prediction: An Agentic AI Approach}
-\author{Khushi Jain}
-\date{April 2024}
+\setstretch{1.2}
 
 \begin{document}
 
-\maketitle
+% ---------------- COVER PAGE ----------------
+\begin{center}
 
-\begin{abstract}
-This report details the implementation of a hybrid customer churn prediction system that combines traditional machine learning (Logistic Regression, Decision Trees) with modern Agentic Generative AI (Google Gemini). The system not only predicts churn with high accuracy but also provides natural language insights and retention strategies using a retrieval-augmented generation (RAG) approach.
-\end{abstract}
+\vspace*{2cm}
 
-\section{Introduction}
-Customer retention is critical for telecommunications providers. Milestone 1 of this project established a baseline using classification models. Milestone 2 extends this by introducing an AI Agent capable of interpreting model outputs and suggesting human-centric interventions.
+{\LARGE \textbf{Customer Churn Prediction \& Agentic Retention Strategy}}\\[0.5cm]
 
-\section{Technical Implementation}
+{\large \textit{From Predictive Analytics to Intelligent Intervention}}\\[2cm]
 
-\subsection{Machine Learning Pipeline}
-We employed two primary models:
+\textbf{\Large Team Members}\\[0.5cm]
+
+\begin{tabular}{ll}
+Shyam Verma & 2401010453 \\
+Swati Ghosh & 2401010471 \\
+Khushi Jain & 2401010227 \\
+\end{tabular}
+
+\vspace{2cm}
+
+\textbf{Platform:} Streamlit Community Cloud\\
+\textbf{Date:} March 2026
+
+\vfill
+
+\end{center}
+
+\newpage
+
+% ---------------- ABSTRACT ----------------
+\section*{Abstract}
+
+Customer churn is a critical challenge for businesses, as retaining existing customers is more cost-effective than acquiring new ones.
+
+This project presents an AI-driven customer analytics system that evolves from predictive analytics (Milestone 1) to an agentic AI-based retention strategy (Milestone 2).
+
+In Milestone 1, the system predicts churn using classical machine learning models, identifies key churn drivers, and provides interactive insights through a Streamlit application.
+
+In Milestone 2, the system is enhanced with Generative AI and Agentic Intelligence, enabling it to explain predictions and recommend personalized retention strategies.
+
+\newpage
+
+% ---------------- PROBLEM ----------------
+\section{Problem Statement}
+
+Customer churn negatively impacts revenue and long-term sustainability. Manual identification of churn risk is inefficient.
+
+\textbf{Objectives:}
 \begin{itemize}
-    \item \textbf{Logistic Regression:} Used for its interpretability and baseline performance.
-    \item \textbf{Decision Tree:} Used to capture non-linear relationships and high-dimensional interactions.
+\item Predict customer churn
+\item Identify key influencing factors
+\item Provide actionable insights
+\item Build an interactive system
+\item Enable AI-driven recommendations
 \end{itemize}
 
-\subsection{Agentic AI Workflow}
-The "Churn Analyst Agent" is implemented using the Gemini 1.5 Flash model. The workflow follows an agentic pattern:
-1. \textbf{Perception:} The agent reads the raw customer data and the churn probability from the ML models.
-2. \textbf{Retrieval (RAG):} The agent searches a knowledge base of retention policies (simulated) to ground its responses.
-3. \textbf{Reasoning:} The agent synthesizes the data and retrieved knowledge to explain the "why" behind the churn risk.
-4. \textbf{Action:} The agent outputs a structured report including custom retention strategies and call scripts.
+% ---------------- DATASET ----------------
+\section{Dataset Description}
 
-\section{Results and Analysis}
+The dataset includes:
+\begin{itemize}
+\item Customer tenure
+\item Service usage
+\item Contract type
+\item Payment methods
+\item Monthly and total charges
+\end{itemize}
 
-\subsection{Model Performance}
-The models were evaluated on the Telco Churn dataset (80/20 split). 
-\begin{table}[h]
-\centering
-\begin{tabular}{lrr}
-\toprule
-Metric & LogReg & Decision Tree \\
-\midrule
-Accuracy & 0.81 & 0.79 \\
-F1-Score & 0.62 & 0.58 \\
-\bottomrule
-\end{tabular}
-\caption{Comparative performance metrics.}
-\end{table}
+\textbf{Target:} Churn (Yes/No)
 
-\subsection{Qualitative Analysis}
-By integrating LLMs, we successfully converted a numeric probability (e.g., 0.82) into an actionable insight: "This customer is likely leaving due to their month-to-month contract and lack of tech support."
+% ---------------- ARCHITECTURE ----------------
+\section{System Architecture}
 
+Pipeline:
+\begin{itemize}
+\item Data Loading and Cleaning
+\item Feature Engineering
+\item Model Training
+\item Evaluation
+\item Visualization
+\item Agentic AI Layer (Milestone 2)
+\item Streamlit Interface
+\end{itemize}
+
+% ---------------- METHODOLOGY ----------------
+\section{Methodology}
+
+\subsection{Data Preprocessing}
+\begin{itemize}
+\item Missing value handling
+\item Encoding categorical variables
+\item Feature scaling
+\item Train-test split
+\end{itemize}
+
+\subsection{Feature Engineering}
+\begin{itemize}
+\item AvgChargePerMonth = TotalCharges / (tenure + 1)
+\item TenureGroup: New, Mid, Loyal
+\end{itemize}
+
+\subsection{Machine Learning Models}
+\begin{itemize}
+\item Logistic Regression
+\item Decision Tree Classifier
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+\begin{itemize}
+\item Accuracy
+\item Precision
+\item Recall
+\item Confusion Matrix
+\end{itemize}
+
+% ---------------- AGENTIC AI ----------------
+\section{Milestone 2: Agentic AI \& GenAI Integration}
+
+This phase transforms the system into an intelligent assistant.
+
+\subsection{Key Components}
+\begin{itemize}
+\item LLM Integration (Google Gemini)
+\item RAG-lite Knowledge Retrieval
+\item ChurnAnalystAgent for reasoning
+\end{itemize}
+
+\subsection{Agent Workflow}
+\begin{enumerate}
+\item Predict churn probability
+\item Pass data to agent
+\item Retrieve knowledge
+\item Generate explanation and strategy
+\end{enumerate}
+
+\subsection{Capabilities}
+\begin{itemize}
+\item Explain churn reasons
+\item Interpret predictions
+\item Suggest retention strategies
+\end{itemize}
+
+% ---------------- MODULES ----------------
+\section{System Modules}
+
+\begin{itemize}
+\item data\_preprocessing.py
+\item models.py
+\item evaluation.py
+\item agent.py
+\item app.py
+\end{itemize}
+
+% ---------------- STREAMLIT ----------------
+\section{Streamlit Application}
+
+Features:
+\begin{itemize}
+\item CSV upload
+\item Model training
+\item Prediction visualization
+\item Feature importance
+\item AI insights
+\end{itemize}
+
+% ---------------- RESULTS ----------------
+\section{Results and Insights}
+
+\begin{itemize}
+\item Logistic Regression: stable baseline
+\item Decision Tree: captures patterns
+\item Key drivers: contract type, tenure, charges
+\item AI provides actionable recommendations
+\end{itemize}
+
+% ---------------- LIMITATIONS ----------------
+\section{Limitations}
+
+\begin{itemize}
+\item Relies on historical data
+\item No automatic retraining
+\item RAG-lite is simulated
+\end{itemize}
+
+% ---------------- FUTURE ----------------
+\section{Future Scope}
+
+\begin{itemize}
+\item Real-time data integration
+\item Advanced RAG systems
+\item Autonomous AI agents
+\item Feedback learning systems
+\end{itemize}
+
+% ---------------- CONCLUSION ----------------
 \section{Conclusion}
-The transition from a predictive model to an agentic system significantly enhances business value by providing "actionable intelligence" rather than just raw data.
+
+This project evolves from predictive analytics to an intelligent system capable of reasoning and recommending actions.
+
+It demonstrates how machine learning combined with Generative AI can enable smarter business decisions.
 
 \end{document}
